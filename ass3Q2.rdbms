@@ -1,0 +1,13 @@
+select * from newspaper1;
+create or replace procedure disp_cost
+IS
+  nname varchar2(20);
+  nlang varchar2(20);
+  npub varchar2(20);
+  ncost number;
+begin
+  select name,lanuage,publisher,cost into nname,nlang,npub,ncost
+  from newspaper1 where cost>4;
+   dbms_output.put_line(nname||' '||nlang||' '||npub||' '||ncost);
+end;
+/

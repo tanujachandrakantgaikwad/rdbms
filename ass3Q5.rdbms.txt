@@ -1,0 +1,26 @@
+create or replace procedure dis_lib(libno int,bname varchar2,price int)
+is
+ cursor c1 is select bname,price from book1,library1
+ where library1.lno=book1.lno and
+ libno=101;
+  m1 c1%rowtype;
+begin
+ open c1;
+ loop
+ fetch c1 into m1;
+  exit when c1%notfound;
+ dbms_output.put_line('book name='||m1.bname);
+  dbms_output.put_line('book price='||m1.price);
+ end loop;
+ close c1;
+end;
+/
+declare 
+  price int;
+  bname varchar(20);
+  lno int;
+ begin
+   lno:=:lno;
+  dis_lib(price,bname,lno);
+end;
+/

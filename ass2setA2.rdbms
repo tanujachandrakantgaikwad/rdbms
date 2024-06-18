@@ -1,0 +1,13 @@
+declare
+   rate int;
+   invaild_rate_value exception;
+begin
+     rate:=:rate;
+   if rate<=0 then
+      raise invaild_rate_value;
+   end if;
+  dbms_output.put_line('correct input...');
+exception
+    when invaild_rate_value then
+   dbms_output.put_line('invalid rate aahe');
+end;

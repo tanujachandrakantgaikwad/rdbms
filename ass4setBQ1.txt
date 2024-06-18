@@ -1,0 +1,11 @@
+create or replace function count_supp return int
+as
+ ans int;
+begin
+ select count(*) into ans from item,supplier,item_supp
+ where item.item_no=item_supp.item_no
+ and supplier.sno=item_supp.sno
+ and item_name='kayboard';
+  return ans;
+end;
+select count_supp()from dual;

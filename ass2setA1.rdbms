@@ -1,0 +1,20 @@
+declare
+  QUANTITY_OUT_OF_RANGE exception;
+  t_quantity wp.quantity%type;
+  t_w_no wp.w_no%type;
+  t_product_no wp.product_no%type;
+begin
+  t_quantity:=:t_quantity;
+  t_w_no:=:t_w_no ;
+  t_product_no:=:t_product_no;
+ if(not(t_quantity>50 AND t_quantity<200))then
+   raise QUANTITY_OUT_OF_RANGE;
+ end if;
+ insert into wp values(t_w_no,t_product_no,t_quantity);
+ dbms_output.put_line('record insert');
+exception
+
+  when QUANTITY_OUT_OF_RANGE then
+  dbms_output.put_line('invalid quantity...');
+end;
+/

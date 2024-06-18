@@ -1,0 +1,21 @@
+select * from cities1;
+create or replace procedure disp_city
+IS
+ cpin number;
+ ccity varchar2(20);
+ cstate varchar2(20);
+begin
+ select pincode,city,state into cpin,ccity,cstate from 
+newspaper1,cities1,NC where language='english'and 
+newspaper1.name=NC.name and
+cities1.pincode=NC.pincode;
+
+dbms_output.put_line(cpin||' '||ccity||' '||cstate);
+end;
+/
+ 
+------calling-----
+begin
+ disp_city();
+end;
+/

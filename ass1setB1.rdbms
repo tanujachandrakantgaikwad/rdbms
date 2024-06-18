@@ -1,0 +1,17 @@
+declare
+  t_name stud.name%type;
+  r1 stud%rowtype;
+begin
+  t_name:=:enter_name;
+ select * into r1 from stud where NAME=t_name;
+  dbms_output.put_line('Roll_No='||r1.Roll_No);
+  dbms_output.put_line('sname='||r1.NAME);
+  dbms_output.put_line('CLASS='||r1.CLASS);
+  dbms_output.put_line('DATE_OF_BIRTH='||r1.DATE_OF_BIRTH);
+ dbms_output.put_line('COLLEGE='||r1.COLLEGE);
+exception
+    when No_Data_found then
+     dbms_output.put_line('invalid aahe data nahi');
+    when Too_many_rows then
+    dbms_output.put_line('multiple record found');
+end;

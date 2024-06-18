@@ -1,0 +1,23 @@
+
+declare
+ v_r_no int;
+ v_sname varchar2(20);
+ v_per float;
+begin
+  v_r_no:=:v_r_no;
+ select sname,per into v_sname,v_per from stud12 where r_no=v_r_no;
+  dbms_output.put_line('sname'||v_sname);
+ dbms_output.put_line('per'||v_per);
+ if(v_per>=70)then
+    dbms_output.put_line('greate=O');
+ elsif(v_per>=60)then
+    dbms_output.put_line('greate=A+');
+ elsif(v_per>=50)then
+    dbms_output.put_line('greate=B');
+  elsif(v_per>=40)then
+    dbms_output.put_line('greate=pass');
+  else
+    dbms_output.put_line('greate=fail');
+ end if;
+end;
+/

@@ -1,0 +1,24 @@
+create or replace function supnum(name supplier.sname%type) return int
+as
+ ans int;
+begin
+ select count(*)into ans from item,supplier,item_supp
+ where item.item_no=item_supp.item_no
+ and supplier.sno=item_supp.sno
+ and sname=name;
+  return ans;
+end;
+/
+
+
+declare
+  name supplier.sname%type;
+ ans int;
+begin
+ name:=:name;
+ ans:=supnum(name);
+  dbms_output.put_line('supplier'||ans);
+end;
+/
+select * from item_supp;
+select * from supplier

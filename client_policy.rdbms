@@ -1,0 +1,30 @@
+create table client(client_no int primary key,
+client_name varchar(20),
+address varchar(20),
+birthdate date);
+
+insert into client values(101,'om','pune','1-feb-2018');
+insert into client values(102,'omkar','nashik','28-feb-2015');
+insert into client values(103,'sai','mumbai','1-nov-2005');
+insert into client values(104,'tanmay','nager','30-dec-2005');
+insert into client values(105,'tanuja','shrirampur','17-jan-2018');
+
+create table policy(policy_no int primary key,
+pdesc varchar(20),
+maturity_amt int,
+prem_amt int,
+pdate date);
+
+insert into policy values(1,'jeevan vima',120000,18000,'1-jan-2020');  
+insert into policy values(2,'life insurance vima',100000,1000,'1-jan-2020');
+insert into policy values(3,'aarogya vima',280000,8000,'1-jan-2020');
+insert into policy values(4,'aanand vima',170000,9000,'1-jan-2020');
+
+create table cp_info(cilent_no int references client,
+policy_no int references policy);
+
+insert into cp_info values(101,3);
+insert into cp_info values(103,4);
+insert into cp_info values(102,1);
+insert into cp_info values(104,2);
+

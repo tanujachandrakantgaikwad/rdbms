@@ -1,0 +1,16 @@
+declare 
+ cursor c1 is select * from project2 order by status asc;
+ t1 c1%rowtype;
+begin
+ open c1;
+ loop
+ fetch c1 into t1;
+ exit when c1%notfound;
+ dbms_output.put_line('project no='||t1.pno);
+ dbms_output.put_line('panme='||t1.pname);
+ dbms_output.put_line('start_date='||t1.start_date);
+ dbms_output.put_line('budget='||t1.budget);
+ dbms_output.put_line('status='||t1.status);
+ end loop;
+ close c1;
+end;

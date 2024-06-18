@@ -1,0 +1,14 @@
+create or replace function dis_product_name(t_product_name product.product_name%type)
+return varchar
+as
+ r1 product%rowtype;
+begin
+ select * into r1 from product where product_name=t_product_name;
+ return('product no='||r1.product_no||'product rate='||r1.rate);
+exception
+   when NO_DATA_FOUND then
+ dbms_output.put_line('invalid name of product');
+end;
+/
+select dis_product_name('book')from dual;
+select * from product;

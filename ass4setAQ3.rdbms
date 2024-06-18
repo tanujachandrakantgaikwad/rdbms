@@ -1,0 +1,12 @@
+create or replace function disp_policy_date return int
+as
+    ans int;
+begin
+   select count(*)into ans from policy;
+ if SQL%FOUND then 
+  return ans;
+ else
+  return 0;
+ end if;
+end;
+select disp_policy_date()from dual;

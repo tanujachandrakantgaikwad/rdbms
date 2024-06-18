@@ -1,0 +1,25 @@
+create or replace procedure disp_book1(pub book1.publication%type)
+IS
+ cursor c1 is select * from book1 where publication=pub;
+ t1 c1%rowtype;
+begin 
+ open c1;
+   loop
+    fetch c1 into t1;
+      exit when c1%notfound;
+    dbms_output.put_line('book id='||t1.bid);
+    dbms_output.put_line('book name='||t1.bname);
+    dbms_output.put_line('author_name='||t1.author_name);
+    dbms_output.put_line('price='||t1.price);
+  end loop;
+ close c1;
+end;
+
+
+declare 
+   pub varchar2(20);
+begin
+pub:=:pub;
+  disp_book1(pub);
+end;
+/

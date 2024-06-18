@@ -1,0 +1,9 @@
+create or replace trigger t1
+before insert or update on emp1
+for each row
+begin
+ if(:new.emp_id<=0)then
+  raise_application_error(-20034,'less than zero values not allower');
+end if;
+end;
+insert into emp1 values(-20,'sai','pune');

@@ -1,0 +1,19 @@
+
+create or replace procedure total_cost(cname out varchar2,cost in float)
+IS
+BEGIN
+  select sum(cost)into cname from newspaper1,cities1,NC
+   where newspaper1.name=NC.name
+  AND cities1.pincode=NC.pincode and city='cname';
+end total_cost;
+/
+declare
+  cname varchar2(20);
+  cost float;
+begin
+   cname:=:cname;
+ total_cost(cname,cost);
+  dbms_output.put_line('newspapercost='||cost);
+end;
+/ 
+

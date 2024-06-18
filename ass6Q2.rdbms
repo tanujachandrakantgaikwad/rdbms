@@ -1,0 +1,9 @@
+create or replace trigger M1
+before insert or update on invest1
+for each row
+begin
+ if(:new.inv_amount<10000)then
+  raise_application_error(-20000,17000);
+ end if;
+end;
+insert into invest1 values(13,'land','7-may-1010',8000);

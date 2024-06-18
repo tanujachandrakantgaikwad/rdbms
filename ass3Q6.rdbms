@@ -1,0 +1,24 @@
+select * from library1;
+create or replace procedure disp_name(lab_name varchar2)
+IS
+ cursor c1 is select lname from library1 where librarian=lab_name;
+ m1 c1%rowtype;
+begin
+ open c1;
+  loop
+   fetch c1 into m1;
+   exit when c1%notfound;
+   dbms_output.put_line('library name='||m1.lname);
+  end loop;
+  close c1;
+end;
+
+declare
+  lname varchar2(20);
+
+begin
+lname:=:lname;
+ disp_name(lname);
+  dbms_output.put_line(lname);
+end;
+/

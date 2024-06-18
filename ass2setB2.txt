@@ -1,0 +1,14 @@
+declare
+ mobile int;
+ INVALID_MOBILE_NO exception;
+begin
+  mobile:=:mobile;
+  if length(mobile)!=10 then
+   raise INVALID_MOBILE_NO;
+ end if;
+   dbms_output.put_line('correct input...');
+exception
+   when INVALID_MOBILE_NO then
+ dbms_output.put_line('mobile number invaild aahe');
+end;
+/

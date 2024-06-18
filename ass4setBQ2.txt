@@ -1,0 +1,20 @@
+create or replace function sup return int
+as
+ ans int;
+begin
+ select rate into ans from item,supplier,item_supp
+ where item.item_no=item_supp.item_no
+ and supplier.sno=item_supp.sno
+ and item_name='book'and sname='tanmay';
+  return ans;
+end;
+/
+
+
+declare
+ ans int;
+begin
+ ans:=count_supp();
+  dbms_output.put_line(' rate'||ans);
+end;
+/

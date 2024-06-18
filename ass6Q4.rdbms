@@ -1,0 +1,40 @@
+create table bill(billno int primary key,
+day varchar2(20),
+tableno int,
+total int);
+
+insert into bill values(1,'monday',12,20);
+
+create table menu(dish_no int primary key,
+dish_desc varchar2(20),
+price int);
+insert into menu values(101,'good menu',20);
+
+create or replace trigger p1
+before insert or update on  menu
+for each row
+begin
+  if(:new.price<=0)then
+   raise_application_error(-20991,'less then zero price not allowed');
+  end if;
+end;
+/
+insert into menu values(1,'good food',-2);
+create or replace trigger a1
+before insert or update on bill
+for each row
+begin
+  if(:new.total<=10)then
+    raise_application_error(-20562,'bill total less than or equal to 10 rs');
+  end if;
+end;
+
+insert into bill values(10,'sunday',6,20);
+select * from bill;
+
+
+
+
+
+
+

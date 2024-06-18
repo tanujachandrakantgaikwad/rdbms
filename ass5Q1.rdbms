@@ -1,0 +1,29 @@
+create table proj(pno int,
+pname varchar2(20),
+start_date date,
+budget number,
+status varchar2(20));
+
+insert into proj values(101,'computer','1-jan-2020',290000,'good');
+insert into proj values(102,'account','18-jan-2020',190000,'good');
+insert into proj values(103,'math','1-may-2020',220000,'good');
+insert into proj values(104,'science','17-jan-2020',1320000,'good');
+
+select * from proj;
+
+declare
+  cursor p1 is select * from proj where start_date='1-jan-2020';
+  t1 p1%rowtype;
+begin
+ open p1;
+  loop
+  fetch p1 into t1;
+   exit when p1%notfound;
+ dbms_output.put_line('project no='||t1.pno);
+ dbms_output.put_line('project name='||t1.pname);
+ dbms_output.put_line('project start_date='||t1.start_date);
+ dbms_output.put_line('project budget='||t1.budget);
+ dbms_output.put_line('project status='||t1.status);
+end loop;
+close p1;
+end;

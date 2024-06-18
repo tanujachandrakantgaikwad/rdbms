@@ -1,0 +1,16 @@
+declare 
+ cursor c1 is select * from gym1 order by city asc;
+ t1 c1%rowtype;
+begin
+ open c1;
+ loop
+ fetch c1 into t1;
+ exit when c1%notfound;
+ dbms_output.put_line('gym name='||t1.gname);
+ dbms_output.put_line('city='||t1.city);
+ dbms_output.put_line('charges='||t1.charges);
+ dbms_output.put_line('scheme='||t1.scheme);
+ 
+ end loop;
+ close c1;
+end;
